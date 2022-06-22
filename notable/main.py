@@ -73,7 +73,7 @@ def get_appointment(*, app_id:int, db: Session = Depends(get_db)):
     return single_appointment.__dict__
 
 @api_router.get('api/doctors/{doc_id}/{date}', status_code = 200, response_model = AppointmentResults)
-def get_appointment_by_day_doc(*, doc_id: int, date: str, db: Session = Depends(get_db)):
+def get_appointments_for_the_day_for_doctor(*, doc_id: int, date: str, db: Session = Depends(get_db)):
 
     appointment_list = crud_utils.get_appointment_by_day_doc(db = db, doc_id = doc_id, date = date)
     if not appointment_list:

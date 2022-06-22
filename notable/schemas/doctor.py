@@ -1,18 +1,33 @@
-from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import relationship
-from notable.db.base_class import Base
-from sqlalchemy.ext.declarative import declarative_base
+
+from pydantic import BaseModel
+from typing import Sequence
 
 
+class DoctorBase(BaseModel):
+    # id: int
+    first_name : str
+    last_name : str
 
-class Doctor(Base):
-    __tablename__ = "doctor"
-    id = Column(Integer, primary_key = True, nullable = False)
-    first_name = Column(String(256), nullable = False)
-    last_name = Column(String(256), nullable = False)
-    appointment = relationship(
-        "Appointment",
-        cascade = "all,delete-orphan",
-        back_populates = "doctor",
-        uselist = True
-        )
+class DoctorCreate(DoctorBase):
+    pass
+
+class DoctorInDBBase(DoctorBase):
+    id : int
+
+    class Config:
+        orm_mode = True
+
+class Doctor(DoctorInDBBase):
+    pass
+
+class DoctorInDB(DoctorInDBBase):
+    pass
+
+class DoctorInsert(DoctorBase):
+    id : int
+
+class DoctorInsertList(BaseModel):
+    result : Sequence[DoctorInsert]
+
+class DoctorResults(BaseModel):
+    doctors : Sequence[Doctor]
