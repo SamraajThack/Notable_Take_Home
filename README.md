@@ -2,6 +2,8 @@
 
 Making doctors' and patients' lives easier
 
+Please use notable_take_home_final.zip, previous file had 'import uvicorngit' instead of 'import uvicorn' please excuse that, nothing else has changed
+
 ## Summary
 I used the modern python API solution FastAPI as my framework of choice and a SQLite Database with the SQLAlchemy ORM. I tried to implement a proper folder structure (db, schema, models, crud_middleware)  and data validation techniques with basic error handling
 
