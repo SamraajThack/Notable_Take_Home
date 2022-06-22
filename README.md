@@ -34,6 +34,7 @@ FastAPI provides an interactive interface to test out API. Visit /docs from the 
 
 The usage of data and time is very primitive and basic given time constraints. It gets added as a string and the format has to be - date: 'YYYY-MM-DD', time : HH: MM with a 24hr format
 
+
 ## Notes and Basic Further Implementation
 
 - FastAPI is very good at high-performance async processing, I tried to implement it but couldn't in time with the DB
