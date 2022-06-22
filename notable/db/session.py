@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-SQLAlCHEMY_DATABASE_URI = "sqlite:///example.db"
+SQLAlCHEMY_DATABASE_URI = "sqlite:///notable.db"
 
 engine = create_engine(
     SQLAlCHEMY_DATABASE_URI,
