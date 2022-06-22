@@ -30,9 +30,9 @@ def start():
 
 @api_router.get('/', status_code = 200)
 def root():
-    return {"message": "Hello Notable!"}
+    return {"message": "Hello Notable! Please go to /docs to easily test out the APIs"}
 
-@api_router.post('api/appointment', status_code = 200, response_model = Appointment)
+@api_router.post('/api/appointment', status_code = 200, response_model = Appointment)
 def create_appoinment(*, app: AppointmentCreate, db: Session =  Depends(get_db)):
 
     #check is the time is valid 
@@ -53,7 +53,7 @@ def create_appoinment(*, app: AppointmentCreate, db: Session =  Depends(get_db))
         new_app =  crud_utils.create_appointment(db=db, appointment = app)
         return new_app.__dict__
 
-@api_router.get('api/doctors', status_code = 200, response_model = DoctorResults)
+@api_router.get('/api/doctors', status_code = 200, response_model = DoctorResults)
 def get_all_doctors(db: Session = Depends(get_db)):
     doctors_list = crud_utils.get_all_doctors(db = db)
     if not doctors_list:
@@ -63,7 +63,7 @@ def get_all_doctors(db: Session = Depends(get_db)):
     return {"doctors": doctors_list}
 
 
-@api_router.get('api/appointments/{app_id}', status_code = 200, response_model = Appointment)
+@api_router.get('/api/appointments/{app_id}', status_code = 200, response_model = Appointment)
 def get_appointment(*, app_id:int, db: Session = Depends(get_db)):
     single_appointment =  crud_utils.get_appointment(db=db, appointment_id = app_id)
     if not single_appointment:
@@ -72,7 +72,7 @@ def get_appointment(*, app_id:int, db: Session = Depends(get_db)):
         )
     return single_appointment.__dict__
 
-@api_router.get('api/doctors/{doc_id}/{date}', status_code = 200, response_model = AppointmentResults)
+@api_router.get('/api/doctors/{doc_id}/{date}', status_code = 200, response_model = AppointmentResults)
 def get_appointments_for_the_day_for_doctor(*, doc_id: int, date: str, db: Session = Depends(get_db)):
 
     appointment_list = crud_utils.get_appointment_by_day_doc(db = db, doc_id = doc_id, date = date)
@@ -87,7 +87,7 @@ def get_appointments_for_the_day_for_doctor(*, doc_id: int, date: str, db: Sessi
     
     return {"appointments" : appointments}
 
-@api_router.delete('api/appointments/{app_id}', status_code = 200, response_model = Appointment)
+@api_router.delete('/api/appointments/{app_id}', status_code = 200, response_model = Appointment)
 def delete_appointment(*, app_id, db: Session = Depends(get_db)):
     single_appointment =  crud_utils.get_appointment(db=db, appointment_id = app_id)
     if not single_appointment:
