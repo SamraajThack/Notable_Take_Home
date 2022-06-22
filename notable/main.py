@@ -1,5 +1,5 @@
 from fastapi import Depends, FastAPI, APIRouter, HTTPException
-import uvicorn
+
 import subprocess
 from sqlalchemy.orm import Session
 from notable.db.session import SessionLocal
